@@ -13,28 +13,24 @@ stadiums <- stadiums |>
 stadiums
 
 games <- read.csv(file.choose())
-
 library(dplyr)
 library(tidyverse)
 
-# combine column to rename
-games <- games %>%
-  mutate(HomeTeam = paste(hometeamCity, hometeamName, sep = " "))
-
-games <- games %>%
+# Combine columns to rename
+games <- games |>
+  mutate(HomeTeam = paste(hometeamCity, hometeamName, sep = " ")) |>
   mutate(AwayTeam = paste(awayteamCity, awayteamName, sep = " "))
 
-
-games <- games %>%
-  rename(winner_num = winner) %>%
+games <- games |>
+  rename(winner_num = winner) |>
   mutate(
     winningTeam = ifelse(winner_num == 1, "Home", "Away"),
     winner = ifelse(winningTeam == "Home", HomeTeam, AwayTeam)
-  ) %>%
+  ) |>
   select(-winner_num)
 
-#delete unneeded columns
-games <- games %>%
-  select(-gameId, -hometeamId, awayteamId, -gameType, -arenaId, -gameLabel, -gameSubLabel, -seriesGameNumber)
+# Delete unneeded columns
+games <- games |>
+  select(-gameId, -hometeamId, -awayteamId, -gameType, -arenaId, -gameLabel, -gameSubLabel, -seriesGameNumber)
 
 
