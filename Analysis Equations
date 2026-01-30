@@ -1,0 +1,28 @@
+Analysis Equations:
+
+Home win rate overall = # of home wins/total # of home games
+
+*Make bracket groups
+  Attendance: What should the bracket sizes be?
+
+  Amount of travel: Could do miles or km? How big should bracket sizes be? Maybe just keep continuous
+
+  Time difference: 
+    -> 0 hours
+    -> 1 hours
+    -> 2 hours
+    -> 3 hours
+
+Home Win rate by attendance = home wins in "group"/ home games in "group"
+Home Win rate by travel = home wins in "group"/ home games in "group"
+Home Win rate by time difference = home wins in "group"/ home games in "group"
+
+*Conditions...
+  back-to-back: rest_days==0
+  rested: rest_days>1
+
+Compare rested vs back to back games
+
+Log regression compared to overall with rate -> use the home win rate by... as the x variable -> find the p value to see what is statistically significant
+
+Take into account the overall record because if a team's record is undefeated... then it will fit the log reg perfectly which isn't accurate
