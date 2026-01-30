@@ -31,6 +31,7 @@ games <- games |>
 
 # Delete unneeded columns
 games <- games |>
-  select(-gameId, -hometeamId, -awayteamId, -gameType, -arenaId, -gameLabel, -gameSubLabel, -seriesGameNumber)
+  select(-gameId, -hometeamId, -awayteamId, -gameType, -arenaId, -gameLabel, -gameSubLabel, -seriesGameNumber, -hometeamCity, -hometeamName, -awayteamCity, -awayteamName)
+
 
 
