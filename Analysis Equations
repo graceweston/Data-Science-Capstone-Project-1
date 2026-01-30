@@ -1,6 +1,7 @@
 Analysis Equations:
 
 Home win rate overall = # of home wins/total # of home games
+Away win rate overall = # of away wins/total # of away games
 
 *Make bracket groups
   Attendance: What should the bracket sizes be?
@@ -26,6 +27,9 @@ Home Win rate by time difference = home wins in "group"/ home games in "group"
   rested: rest_days>1
 
 Compare rested vs back to back games
+
+Comparing if coming off a loss/win matters differently for home vs away teams
+
 
 Log regression compared to overall with rate -> use the home win rate by... as the x variable -> find the p value to see what is statistically significant
 
