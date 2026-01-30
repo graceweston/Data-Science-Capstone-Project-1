@@ -4,6 +4,10 @@ Home win rate overall = # of home wins/total # of home games
 
 *Make bracket groups
   Attendance: What should the bracket sizes be?
+    -> 0-14,999 (low)
+    -> 15,000-17,499 (medium)
+    -> 17,500-19,499 (high)
+    -> >=19,500 (sellout)
 
   Amount of travel: Could do miles or km? How big should bracket sizes be? Maybe just keep continuous
 
