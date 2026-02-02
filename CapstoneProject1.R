@@ -35,7 +35,7 @@ games <- games |>
 
 #Reorder
 games <- games |>
-  select(gameDateTimeEst, HomeTeam, AwayTeam, homeScore, winningTeam, winner, attendance)
+  select(gameId, gameDateTimeEst, HomeTeam, AwayTeam, homeScore, winningTeam, winner, attendance)
 
 
 #seperate date and time and get rid of original column
@@ -82,6 +82,7 @@ games <- games |>
       TRUE ~ NA_character_
     )
   )
+
 
 
 
