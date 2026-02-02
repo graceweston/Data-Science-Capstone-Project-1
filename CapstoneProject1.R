@@ -35,8 +35,7 @@ games <- games |>
 
 #Reorder
 games <- games |>
-  select(gameId, gameDateTimeEst, HomeTeam, AwayTeam, homeScore, winningTeam, winner, attendance)
-
+  select(gameId, gameDateTimeEst, HomeTeam, AwayTeam, homeScore, awayScore, winningTeam, winner, attendance)
 
 #seperate date and time and get rid of original column
 library(lubridate)
@@ -82,6 +81,12 @@ games <- games |>
       TRUE ~ NA_character_
     )
   )
+
+#Reorder
+games <- games |>
+  select(gameId, game_date, game_time, HomeTeam, AwayTeam, homeScore, awayScore, winningTeam, winner, home_b2b, away_b2b, attendance)
+
+#Rename
 
 
 
