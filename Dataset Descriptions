@@ -10,7 +10,8 @@ Variables:
 Games Dataset
 Variables:
     gameId - unique Id # for the specific game
-    gameDateTimeEst - tells the date of the game (ex. 1/22/2026) and time (ex. 17:00)
+    game_date - date the game was played in format of (ex. 1/22/2026)
+    game_time - time the game was played at in format of ...
     homeScore - score of home team
     awayScore - score of away team
     attendance - # of attendees at the game
