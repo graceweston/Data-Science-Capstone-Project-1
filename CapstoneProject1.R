@@ -31,7 +31,7 @@ games <- games |>
 
 # Delete unneeded columns
 games <- games |>
-  select(-gameId, -hometeamId, -awayteamId, -gameType, -arenaId, -gameLabel, -gameSubLabel, -seriesGameNumber, -hometeamCity, -hometeamName, -awayteamCity, -awayteamName)
+  select(-hometeamId, -awayteamId, -gameType, -arenaId, -gameLabel, -gameSubLabel, -seriesGameNumber, -hometeamCity, -hometeamName, -awayteamCity, -awayteamName)
 
 #Reorder
 games <- games |>
@@ -82,6 +82,7 @@ games <- games |>
       TRUE ~ NA_character_
     )
   )
+
 
 
 
