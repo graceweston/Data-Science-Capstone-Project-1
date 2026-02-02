@@ -38,6 +38,64 @@ Games <- Games |>
   select(gameDateTimeEst, HomeTeam, AwayTeam, homeScore, winningTeam, winner, attendance)
 
 
+#seperate date and time and get rid of original column
+library(lubridate)
+
+games <- games |>
+  mutate(
+    gameDateTimeEst = ymd_hms(gameDateTimeEst),
+    game_date = as.Date(gameDateTimeEst),
+    game_time = format(gameDateTimeEst, "%H:%M:%S")
+  ) |>
+  select(-gameDateTimeEst)
+
+# flag back-to-back games
+  # Home team back-to-back
+home_b2b <- games |>
+  select(gameId, game_date, team = HomeTeam) |>
+  arrange(team, game_date) |>
+  group_by(team) |>
+  mutate(home_b2b = ifelse(game_date - lag(game_date) == 1, "Yes", "No")) |>
+  ungroup() |>
+  select(gameId, home_b2b)
+
+  # Away team back-to-back
+away_b2b <- games |>
+  select(gameId, game_date, team = AwayTeam) |>
+  arrange(team, game_date) |>
+  group_by(team) |>
+  mutate(away_b2b = ifelse(game_date - lag(game_date) == 1, "Yes", "No")) |>
+  ungroup() |>
+  select(gameId, away_b2b)
+
+  # Merge back into main data set
+games <- games |>
+  left_join(home_b2b, by = "gameId") |>
+  left_join(away_b2b, by = "gameId")
+
+#fixing winningTeam column
+games <- games |>
+  mutate(
+    winningTeam = case_when(
+      homeScore > awayScore ~ "Home",
+      awayScore > homeScore ~ "Away",
+      TRUE ~ NA_character_
+    )
+  )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
