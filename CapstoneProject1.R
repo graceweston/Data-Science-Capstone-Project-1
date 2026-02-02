@@ -33,12 +33,10 @@ games <- games |>
 games <- games |>
   select(-gameId, -hometeamId, -awayteamId, -gameType, -arenaId, -gameLabel, -gameSubLabel, -seriesGameNumber, -hometeamCity, -hometeamName, -awayteamCity, -awayteamName)
 
-Games <- Games |>
-  select(-awayteamCity, -awayteamName, -hometeamCity, -hometeamName)
-
 #Reorder
 Games <- Games |>
   select(gameDateTimeEst, HomeTeam, AwayTeam, homeScore, winningTeam, winner, attendance)
+
 
 
 
