@@ -1,0 +1,22 @@
+Stadiums Dataset
+Variables:
+    Team - team name with location included such as "New York" or "Boston"
+    League - NBA
+    Division - East or West division
+    Lat - Latitude of where the stadium is located
+    Long - Longtitude of where the stadium is located
+    Timezone - timezone code of where the stadium is located (EST, CST, MST, PST)
+
+Games Dataset
+Variables:
+    gameId - unique Id # for the specific game
+    gameDateTimeEst - tells the date of the game (ex. 1/22/2026) and time (ex. 17:00)
+    homeScore - score of home team
+    awayScore - score of away team
+    attendance - # of attendees at the game
+    HomeTeam - home team name with location included such as "New York" or "Boston"
+    AwayTeam - away team name with location included such as "New York" or "Boston"
+    winningTeam - "Away" or "Home" of who won
+    winner - name of team that won
+    home_b2b - "1" or "0" (Yes/No) if the home team is playing a back to back game
+    away_b2b - "1" or "0" (Yes/No) if the away team is playing a back to back game
