@@ -34,7 +34,7 @@ games <- games |>
   select(-gameId, -hometeamId, -awayteamId, -gameType, -arenaId, -gameLabel, -gameSubLabel, -seriesGameNumber, -hometeamCity, -hometeamName, -awayteamCity, -awayteamName)
 
 #Reorder
-Games <- Games |>
+games <- games |>
   select(gameDateTimeEst, HomeTeam, AwayTeam, homeScore, winningTeam, winner, attendance)
 
 
@@ -82,6 +82,7 @@ games <- games |>
       TRUE ~ NA_character_
     )
   )
+
 
 
 
