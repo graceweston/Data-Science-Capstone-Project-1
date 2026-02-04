@@ -87,6 +87,19 @@ games <- games |>
   select(gameId, game_date, game_time, HomeTeam, AwayTeam, homeScore, awayScore, winningTeam, winner, home_b2b, away_b2b, attendance)
 
 #Rename
+games <- games |>
+  rename(GameId = gameId,
+         Game_Date = game_date,
+         Game_Time = game_time,
+         HomeTeam = HomeTeam,
+         AwayTeam = AwayTeam,
+         HomeScore = homeScore,
+         AwayScore = awayScore,
+         WinningTeam = winningTeam,
+         Winner = winner,
+         Home_B2B = home_b2b,
+         Away_B2B = away_b2b,
+         Attendance = attendance)
 
 
 
