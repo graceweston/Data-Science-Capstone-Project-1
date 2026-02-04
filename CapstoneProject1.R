@@ -101,6 +101,32 @@ games <- games |>
          Away_B2B = away_b2b,
          Attendance = attendance)
 
+#merge stadiums.csv and games.csv
+HomeCourt <- games_updated |>
+  left_join(
+    stadiums_updated |>
+      rename(
+        HomeTeam = Team,
+        HomeTeamLat = Lat,
+        HomeTeamLong = Long,
+        HomeTeamTimeZone = Timezone
+      ),
+    by = "HomeTeam"
+  ) |>
+  left_join(
+    stadiums |>
+      rename(
+        AwayTeam = Team,
+        AwayTeamLat = Lat,
+        AwayTeamLong = Long,
+        AwayTeamTimeZone = Timezone
+      ),
+    by = "AwayTeam"
+  )
+
+View(HomeCourt)
+
+
 
 
 
