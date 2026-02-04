@@ -9,6 +9,10 @@ stadiums <- stadiums |>
       tz_lookup_coords(Lat, Long, method = "accurate") == "America/Denver"  ~ "MST",
       tz_lookup_coords(Lat, Long, method = "accurate") == "America/Phoenix" ~ "MST",
       tz_lookup_coords(Lat, Long, method = "accurate") == "America/Los_Angeles" ~ "PST"))
+
+stadiums <- stadiums |>
+  mutate(Team = recode(Team,
+                       "Sacramento Kings" = "Sacremento Kings"))
   
 stadiums
 
@@ -128,6 +132,7 @@ HomeCourt <- HomeCourt |>
   select(GameId, Game_Date, Game_Time, HomeTeam, HomeTeamLat, HomeTeamLong, HomeTeamTimeZone, AwayTeam, AwayTeamLat, AwayTeamLong, AwayTeamTimeZone, HomeScore, AwayScore, WinningTeam, Winner, Home_B2B, Away_B2B, Attendance, League.y, Division.y)
 
 View(HomeCourt)
+
 
 
 
