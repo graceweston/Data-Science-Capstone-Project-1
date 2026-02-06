@@ -137,6 +137,25 @@ HomeCourt <- HomeCourt |>
 HomeCourt <- HomeCourt |>
   filter(WinningTeam != "NA")
 
+install.packages("geosphere")
+library(geosphere)
+# calculate away teams distance traveled 
+HomeCourt <- HomeCourt |>
+  mutate(
+    Distance_Traveled =
+      round(
+        distHaversine(
+        cbind(AwayTeamLong, AwayTeamLat),
+        cbind(HomeTeamLong, HomeTeamLat)
+      ) / 1609.34 # converting meters to miles
+  ))
+
+# reorder
+HomeCourt <- HomeCourt |>
+  select(GameId, Game_Date, Game_Time, HomeTeam, HomeTeamLat, HomeTeamLong, HomeTeamTimeZone, AwayTeam, AwayTeamLat, AwayTeamLong, AwayTeamTimeZone, HomeScore, AwayScore, WinningTeam, Winner, Home_B2B, Away_B2B, Distance_Traveled, Attendance, League.y, Division.y)
+
+
+
 
 
 
