@@ -129,11 +129,14 @@ HomeCourt <- games_updated |>
     by = "AwayTeam"
   )
 
+# reorder
 HomeCourt <- HomeCourt |>
   select(GameId, Game_Date, Game_Time, HomeTeam, HomeTeamLat, HomeTeamLong, HomeTeamTimeZone, AwayTeam, AwayTeamLat, AwayTeamLong, AwayTeamTimeZone, HomeScore, AwayScore, WinningTeam, Winner, Home_B2B, Away_B2B, Attendance, League.y, Division.y)
 
+# to get rid of postponed or cancelled games
 HomeCourt <- HomeCourt |>
   filter(WinningTeam != "NA")
+
 
 
 
