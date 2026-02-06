@@ -154,6 +154,23 @@ HomeCourt <- HomeCourt |>
 HomeCourt <- HomeCourt |>
   select(GameId, Game_Date, Game_Time, HomeTeam, HomeTeamLat, HomeTeamLong, HomeTeamTimeZone, AwayTeam, AwayTeamLat, AwayTeamLong, AwayTeamTimeZone, HomeScore, AwayScore, WinningTeam, Winner, Home_B2B, Away_B2B, Distance_Traveled, Attendance, League.y, Division.y)
 
+# creating a column calculating the difference in time zones
+Home_court <- Home_court %>%
+  mutate(
+    HomeTeamTimeZoneNum = case_when(
+      HomeTeamTimeZone == "EST" ~ 0,
+      HomeTeamTimeZone == "CST" ~ -1,
+      HomeTeamTimeZone == "MST" ~ -2,
+      HomeTeamTimeZone == "PST" ~ -3
+      ),
+    AwayTeamTimeZoneNum = case_when(
+      AwayTeamTimeZone == "EST" ~ 0,
+      AwayTeamTimeZone == "CST" ~ -1,
+      AwayTeamTimeZone == "MST" ~ -2,
+      AwayTeamTimeZone == "PST" ~ -3
+      ),
+    TimeZoneDiffHours = HomeTeamTimeZoneNum - AwayTeamTimeZoneNum
+    )
 
 
 
