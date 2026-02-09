@@ -1,1 +1,26 @@
+Home Win Rate by Distance Traveled Brackets:
+Code:
+homecourt |>
+  mutate(
+    Distance_Bracket = cut(
+      Distance_Traveled,
+      breaks = c(0, 500, 1000, 1500, 3000),
+      labels = c("0–500", "500–1000", "1000–1500", "1500+")
+    )
+  ) |>
+  group_by(Distance_Bracket) |>
+  summarise(
+    Games = n(),
+    Home_Win_Wate = mean(Home_Win),
+    .groups = "drop"
+  )
+Output:
+  Distance_Bracket Games Home_Win_Wate
+  <fct>            <int>         <dbl>
+1 0–500            12099         0.606
+2 500–1000         16779         0.609
+3 1000–1500         9846         0.599
+4 1500+            11439         0.602
+5 NA               22498         0.641
+
 Home Win Rate by attendance brackets
