@@ -180,6 +180,20 @@ HomeCourt <- HomeCourt |>
 HomeCourt <- HomeCourt |>
   select(GameId, Game_Date, Game_Time, HomeTeam, HomeTeamLat, HomeTeamLong, HomeTeamTimeZone, AwayTeam, AwayTeamLat, AwayTeamLong, AwayTeamTimeZone, HomeScore, AwayScore, WinningTeam, Winner, Home_B2B, Away_B2B, Distance_Traveled, TimeZoneDiffHours, HomeTeamTimeZoneNum, AwayTeamTimeZoneNum, Attendance, Division.y)
 
+HomeCourt %>%
+  mutate(
+    distance_bracket = cut(
+      away_distance_miles,
+      breaks = c(0, 500, 1000, 1500, 3000),
+      labels = c("0–500", "500–1000", "1000–1500", "1500+")
+    )
+  ) %>%
+  group_by(distance_bracket) %>%
+  summarise(
+    games = n(),
+    home_win_rate = mean(home_win),
+    .groups = "drop"
+  )
 
 
 
