@@ -25,3 +25,18 @@ Output:
 6 NA               22498         0.641
 
 Home Win Rate by attendance brackets
+
+HomeCourt |>
+  mutate(
+    attendance_bin = cut(
+      attendance,
+      breaks = c(0, 10000, 15000, 20000, 30000),
+      labels = c("<10k", "10–15k", "15–20k", "20k+")
+    )
+  ) |>
+  group_by(attendance_bin) |>
+  summarise(
+    games = n(),
+    home_win_rate = mean(home_win),
+    .groups = "drop"
+  )
