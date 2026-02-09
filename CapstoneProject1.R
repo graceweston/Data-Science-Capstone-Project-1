@@ -150,6 +150,10 @@ HomeCourt <- HomeCourt |>
       ) / 1609.34 # converting meters to miles
   ))
 
+#Create Home Win where 1 is yes the home team won and 0 is no the home team didn't win
+HomeCourt <- HomeCourt |>
+  mutate(Home_Win = ifelse(WinningTeam == "Home", 1, 0))
+
 # reorder
 HomeCourt <- HomeCourt |>
   select(GameId, Game_Date, Game_Time, HomeTeam, HomeTeamLat, HomeTeamLong, HomeTeamTimeZone, AwayTeam, AwayTeamLat, AwayTeamLong, AwayTeamTimeZone, HomeScore, AwayScore, WinningTeam, Winner, Home_B2B, Away_B2B, Distance_Traveled, Attendance, League.y, Division.y)
@@ -175,6 +179,7 @@ HomeCourt <- HomeCourt |>
 # reorder + get rid of "League.y"
 HomeCourt <- HomeCourt |>
   select(GameId, Game_Date, Game_Time, HomeTeam, HomeTeamLat, HomeTeamLong, HomeTeamTimeZone, AwayTeam, AwayTeamLat, AwayTeamLong, AwayTeamTimeZone, HomeScore, AwayScore, WinningTeam, Winner, Home_B2B, Away_B2B, Distance_Traveled, TimeZoneDiffHours, HomeTeamTimeZoneNum, AwayTeamTimeZoneNum, Attendance, Division.y)
+
 
 
 
