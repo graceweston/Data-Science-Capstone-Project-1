@@ -4,8 +4,8 @@ homecourt |>
   mutate(
     Distance_Bracket = cut(
       Distance_Traveled,
-      breaks = c(0, 500, 1000, 1500, 3000),
-      labels = c("0–500", "500–1000", "1000–1500", "1500+")
+      breaks = c(0, 500, 1000, 1500, 2000, 3000),
+      labels = c("0–500", "500–1000", "1000–1500", "1500-2000", "2000+)
     )
   ) |>
   group_by(Distance_Bracket) |>
