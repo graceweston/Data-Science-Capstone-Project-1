@@ -172,9 +172,10 @@ HomeCourt <- HomeCourt |>
     TimeZoneDiffHours = HomeTeamTimeZoneNum - AwayTeamTimeZoneNum
   )
 
-# reorder
+# reorder + get rid of "League.y"
 HomeCourt <- HomeCourt |>
-  select(GameId, Game_Date, Game_Time, HomeTeam, HomeTeamLat, HomeTeamLong, HomeTeamTimeZone, AwayTeam, AwayTeamLat, AwayTeamLong, AwayTeamTimeZone, HomeScore, AwayScore, WinningTeam, Winner, Home_B2B, Away_B2B, Distance_Traveled, TimeZoneDiffHours, HomeTeamTimeZoneNum, AwayTeamTimeZoneNum, Attendance, League.y, Division.y)
+  select(GameId, Game_Date, Game_Time, HomeTeam, HomeTeamLat, HomeTeamLong, HomeTeamTimeZone, AwayTeam, AwayTeamLat, AwayTeamLong, AwayTeamTimeZone, HomeScore, AwayScore, WinningTeam, Winner, Home_B2B, Away_B2B, Distance_Traveled, TimeZoneDiffHours, HomeTeamTimeZoneNum, AwayTeamTimeZoneNum, Attendance, Division.y)
+
 
 
 
