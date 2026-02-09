@@ -25,18 +25,26 @@ Output:
 6 NA               22498         0.641
 
 Home Win Rate by attendance brackets
-
-HomeCourt |>
+Code:
+homecourt |>
   mutate(
-    attendance_bin = cut(
-      attendance,
+    Attendance_Bracket = cut(
+      Attendance,
       breaks = c(0, 10000, 15000, 20000, 30000),
       labels = c("<10k", "10–15k", "15–20k", "20k+")
     )
   ) |>
-  group_by(attendance_bin) |>
+  group_by(Attendance_Bracket) |>
   summarise(
-    games = n(),
-    home_win_rate = mean(home_win),
+    Games = n(),
+    Home_Win_Wate = mean(Home_Win),
     .groups = "drop"
   )
+Output:
+  Attendance_Bracket Games Home_Win_Wate
+  <fct>              <int>         <dbl>
+1 <10k               11641         0.607
+2 10–15k             15799         0.615
+3 15–20k             34100         0.609
+4 20k+                5900         0.619
+5 NA                  5221         0.682
