@@ -115,17 +115,33 @@ Output:
 
 
 Visuals:
-Overall Home Win Rate Bar Chart
+Overall Home Win rate vs Away Win Rate Bar Chart
 homecourt |>
-  summarise(home_win_rate = mean(Home_Win)) |>
-  ggplot(aes(x = "Home Win Rate", y = home_win_rate)) +
-  geom_col(fill = "blue") +
-  ylim(0, 1) +
-  labs(
-    title = "Overall Home Win Rate",
-    y = "Win Rate",
-    x = ""
-  )
+    summarise(
+      home_win_rate = mean(Home_Win, na.rm = TRUE),
+      away_win_rate = mean(1 - Home_Win, na.rm = TRUE)
+    ) |>
+    pivot_longer(
+      cols = everything(),
+      names_to = "type",
+      values_to = "win_rate"
+    ) |>
+    ggplot(aes(x = type, y = win_rate, fill = type)) +
+    geom_col() +
+    geom_text(aes(label = round(win_rate, 2)), 
+              vjust = -0.5) +
+    scale_fill_manual(values = c(
+      home_win_rate = "red",
+      away_win_rate = "blue"
+    )) +
+    ylim(0, 1) +
+    labs(
+      title = "Home vs Away Win Rate",
+      x = "",
+      y = "Win Rate"
+    ) +
+    theme(legend.position = "none")
+  
 
 Home Win Rate by attendance
 homecourt |>
