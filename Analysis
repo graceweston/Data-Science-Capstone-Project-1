@@ -159,16 +159,38 @@ homecourt |>
 
 Home Win Rate by Away Team Travel Distance (Make it a histogram and make 10 seperate bins with box and whisker) (maybe look at east and west travel)
   homecourt |>
-    group_by(Distance_Traveled) |>
-    summarise(home_win_rate = mean(Home_Win)) |>
-    ggplot(aes(x = Distance_Traveled, y = home_win_rate)) +
+    filter(!is.na(Home_Win), !is.na(Distance_Traveled)) |>
+    mutate(distance_bin = cut_width(Distance_Traveled, width = 500)) |>
+    group_by(distance_bin) |>
+    summarise(
+      win_rate = mean(Home_Win),
+      se = sqrt(win_rate * (1 - win_rate) / n()),
+      .groups = "drop"
+    ) |>
+    ggplot(aes(x = distance_bin, y = win_rate)) +
     geom_col(fill = "purple") +
-    ylim(0, 1) +
+    geom_errorbar(
+      aes(ymin = win_rate - 1.96 * se,
+          ymax = win_rate + 1.96 * se),
+      width = 0.2
+    ) +
+    geom_text(
+      aes(label = percent(win_rate, accuracy = 1)),
+      vjust = -0.5
+    ) +
+    scale_y_continuous(
+      labels = percent,
+      limits = c(0, 1)
+    ) +
     labs(
-      title = "Home Win Rate by Away Team Travel Distance",
-      x = "Away Team Distance Traveled (Miles)",
+      title = "Home Win Rate by Away Travel Distance",
+      x = "Away Team Distance Traveled (Binned Miles)",
       y = "Home Win Rate"
-    ) 
+    ) +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  
+  
+  
   
 
 Home Win Rate by Time Zone Difference (make box and whisker plot)
