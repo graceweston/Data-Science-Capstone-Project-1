@@ -142,19 +142,20 @@ homecourt |>
     ) +
     theme(legend.position = "none")
   
-
+******
 Home Win Rate by attendance
 homecourt |>
-  group_by(attendance_bin) |>
+  group_by(Attendance) |>
   summarise(home_win_rate = mean(Home_Win)) |>
-  ggplot(aes(x = attendance_bin, y = home_win_rate)) +
+  ggplot(aes(x = Attendance, y = home_win_rate)) +
   geom_col(fill = "darkgreen") +
   ylim(0, 1) +
   labs(
     title = "Home Win Rate by Attendance Level",
-    x = "Attendance Bin",
+    x = "Attendance",
     y = "Home Win Rate"
   )
+********
 
 Home Win Rate by Travel Distance
 homecourt |>
