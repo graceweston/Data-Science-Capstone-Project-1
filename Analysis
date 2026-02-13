@@ -114,3 +114,16 @@ Output:
 14                       NA NA          43         0.674
 
 
+Visuals:
+Overall Home Win Rate Bar Chart
+homecourt |>
+  summarise(home_win_rate = mean(home_wins)) |>
+  ggplot(aes(x = "Home Win Rate", y = home_win_rate)) +
+  ylim(0, 1) +
+  labs(
+    title = "Overall Home Win Rate",
+    y = "Win Rate",
+    x = ""
+  )
+
+
