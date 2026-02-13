@@ -159,9 +159,9 @@ homecourt |>
 
 Home Win Rate by Travel Distance
 homecourt |>
-  group_by(distance_bin) |>
-  summarise(home_win_rate = mean(home_wins)) |>
-  ggplot(aes(x = distance_bin, y = home_win_rate)) +
+  group_by(Distance_Traveled) |>
+  summarise(home_win_rate = mean(Home_Win)) |>
+  ggplot(aes(x = Distance_Traveled, y = home_win_rate)) +
   geom_col(fill = "purple") +
   ylim(0, 1) +
   labs(
