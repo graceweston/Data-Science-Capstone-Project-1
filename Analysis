@@ -117,13 +117,27 @@ Output:
 Visuals:
 Overall Home Win Rate Bar Chart
 homecourt |>
-  summarise(home_win_rate = mean(home_wins)) |>
+  summarise(home_win_rate = mean(Home_Win)) |>
   ggplot(aes(x = "Home Win Rate", y = home_win_rate)) +
+  geom_col(fill = "blue") +
   ylim(0, 1) +
   labs(
     title = "Overall Home Win Rate",
     y = "Win Rate",
     x = ""
+  )
+
+Home Win Rate by attendance
+homecourt |>
+  group_by(attendance_bin) |>
+  summarise(home_win_rate = mean(Home_Win)) |>
+  ggplot(aes(x = attendance_bin, y = home_win_rate)) +
+  geom_col(fill = "darkgreen") +
+  ylim(0, 1) +
+  labs(
+    title = "Home Win Rate by Attendance Level",
+    x = "Attendance Bin",
+    y = "Home Win Rate"
   )
 
 
