@@ -157,7 +157,7 @@ homecourt |>
   )
 ********
 
-Home Win Rate by Away Team Travel Distance
+Home Win Rate by Away Team Travel Distance (Make it a histogram and make 10 seperate bins with box and whisker) (maybe look at east and west travel)
   homecourt |>
     group_by(Distance_Traveled) |>
     summarise(home_win_rate = mean(Home_Win)) |>
@@ -171,7 +171,7 @@ Home Win Rate by Away Team Travel Distance
     ) 
   
 
-Home Win Rate by Time Zone Difference
+Home Win Rate by Time Zone Difference (make box and whisker plot)
 homecourt |>
   group_by(tz_diff_abs) |>
   summarise(home_win_rate = mean(home_wins)) |>
