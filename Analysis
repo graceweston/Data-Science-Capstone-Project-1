@@ -208,17 +208,20 @@ homecourt |>
 
 Home Win Rate by Back to Back games
 homecourt |>
-  group_by(away_b2b) |>
-  summarise(home_win_rate = mean(home_wins)) |>
-  ggplot(aes(x = factor(away_b2b), y = home_win_rate)) +
-  geom_col(fill = "brown") +
-  ylim(0, 1) +
-  labs(
-    title = "Home Win Rate by Away Team Back-to-Back Status",
-    x = "Away Team on Back-to-Back (0 = No, 1 = Yes)",
-    y = "Home Win Rate"
-  )
-
+    filter(!is.na(Home_Win), !is.na(Away_B2B)) |>
+    group_by(Away_B2B) |>
+    summarise(
+      home_win_rate = mean(Home_Win),
+      .groups = "drop"
+    ) |>
+    ggplot(aes(x = factor(Away_B2B), y = home_win_rate)) +
+    geom_col(fill = "brown") +
+    scale_y_continuous(limits = c(0, 1)) +
+    labs(
+      title = "Home Win Rate by Away Team Back-to-Back Status",
+      x = "Away Team on Back-to-Back (0 = No, 1 = Yes)",
+      y = "Home Win Rate"
+    )
 
 
 
