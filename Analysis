@@ -157,18 +157,19 @@ homecourt |>
   )
 ********
 
-Home Win Rate by Travel Distance
-homecourt |>
-  group_by(Distance_Traveled) |>
-  summarise(home_win_rate = mean(Home_Win)) |>
-  ggplot(aes(x = Distance_Traveled, y = home_win_rate)) +
-  geom_col(fill = "purple") +
-  ylim(0, 1) +
-  labs(
-    title = "Home Win Rate by Away Team Travel Distance",
-    x = "Distance Traveled (Miles)",
-    y = "Home Win Rate"
-  ) 
+Home Win Rate by Away Team Travel Distance
+  homecourt |>
+    group_by(Distance_Traveled) |>
+    summarise(home_win_rate = mean(Home_Win)) |>
+    ggplot(aes(x = Distance_Traveled, y = home_win_rate)) +
+    geom_col(fill = "purple") +
+    ylim(0, 1) +
+    labs(
+      title = "Home Win Rate by Away Team Travel Distance",
+      x = "Away Team Distance Traveled (Miles)",
+      y = "Home Win Rate"
+    ) 
+  
 
 Home Win Rate by Time Zone Difference
 homecourt |>
