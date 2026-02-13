@@ -218,3 +218,26 @@ homecourt |>
     x = "Away Team on Back-to-Back (0 = No, 1 = Yes)",
     y = "Home Win Rate"
   )
+
+
+
+
+Comparing Multiple 
+Distance Traveled x Time Zone Difference
+homecourt |>
+  group_by(TimeZoneDiffHours, DistanceTraveled) |>
+  summarise(
+    home_win_rate = mean(Home_Wins),
+    games = n(),
+    .groups = "drop"
+  ) |>
+  ggplot(aes(x = factor(TimeZoneDiffHours), y = home_win_rate, fill = DistanceTraveled)) +
+  geom_col(position = "dodge") +
+  ylim(0, 1) +
+  labs(
+    title = "Home Win Rate by Time Zone Difference and Travel Distance",
+    x = "Time Zones Crossed (Absolute)",
+    y = "Home Win Rate",
+    fill = "Distance Traveled"
+  )
+
