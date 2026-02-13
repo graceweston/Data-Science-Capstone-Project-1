@@ -140,4 +140,41 @@ homecourt |>
     y = "Home Win Rate"
   )
 
+Home Win Rate by Travel Distance
+homecourt |>
+  group_by(distance_bin) |>
+  summarise(home_win_rate = mean(home_wins)) |>
+  ggplot(aes(x = distance_bin, y = home_win_rate)) +
+  geom_col(fill = "purple") +
+  ylim(0, 1) +
+  labs(
+    title = "Home Win Rate by Away Team Travel Distance",
+    x = "Distance Traveled (Miles)",
+    y = "Home Win Rate"
+  ) 
 
+Home Win Rate by Time Zone Difference
+homecourt |>
+  group_by(tz_diff_abs) |>
+  summarise(home_win_rate = mean(home_wins)) |>
+  ggplot(aes(x = factor(tz_diff_abs), y = home_win_rate)) +
+  geom_col(fill = "orange") +
+  ylim(0, 1) +
+  labs(
+    title = "Home Win Rate by Time Zone Difference",
+    x = "Time Zones Crossed",
+    y = "Home Win Rate"
+  )
+
+Home Win Rate by Back to Back games
+homecourt |>
+  group_by(away_b2b) |>
+  summarise(home_win_rate = mean(home_wins)) |>
+  ggplot(aes(x = factor(away_b2b), y = home_win_rate)) +
+  geom_col(fill = "brown") +
+  ylim(0, 1) +
+  labs(
+    title = "Home Win Rate by Away Team Back-to-Back Status",
+    x = "Away Team on Back-to-Back (0 = No, 1 = Yes)",
+    y = "Home Win Rate"
+  )
