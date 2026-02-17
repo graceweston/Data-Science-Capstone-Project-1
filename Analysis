@@ -146,8 +146,8 @@ homecourt |>
 Home Win Rate by attendance
 homecourt |>
   group_by(Attendance) |>
-  summarise(home_win_rate = mean(Home_Win)) |>
-  ggplot(aes(x = Attendance, y = home_win_rate)) +
+  summarise(Home_Win_Rate = mean(Home_Win)) |>
+  ggplot(aes(x = Attendance, y = Home_Win_Rate)) +
   geom_col(fill = "darkgreen") +
   ylim(0, 1) +
   labs(
