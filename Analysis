@@ -283,3 +283,40 @@ homecourt
     y = "Home Win Rate",
     fill = "Distance Traveled"
   )
+
+
+
+df %>%
+  group_by(distance_bin, tz_diff_abs) %>%
+  summarise(
+    home_win_rate = mean(home_wins),
+    .groups = "drop"
+  ) %>%
+  ggplot(aes(x = factor(tz_diff_abs), y = home_win_rate)) +
+  geom_col(fill = "steelblue") +
+  facet_wrap(~ distance_bin) +
+  ylim(0, 1) +
+  labs(
+    title = "Home Win Rate by Time Zone Difference, Faceted by Distance",
+    x = "Time Zones Crossed",
+    y = "Home Win Rate"
+  ) +
+  theme_minimal()
+
+
+df %>%
+  group_by(distance_bin, tz_diff_abs) %>%
+  summarise(
+    home_win_rate = mean(home_wins),
+    .groups = "drop"
+  ) %>%
+  ggplot(aes(x = factor(tz_diff_abs), y = distance_bin, fill = home_win_rate)) +
+  geom_tile() +
+  scale_fill_gradient(low = "white", high = "darkred") +
+  labs(
+    title = "Heatmap of Home Win Rate by Distance and Time Zone Difference",
+    x = "Time Zones Crossed",
+    y = "Distance Traveled",
+    fill = "Home Win Rate"
+  ) +
+  theme_minimal()
