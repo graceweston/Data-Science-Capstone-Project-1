@@ -320,3 +320,12 @@ df %>%
     fill = "Home Win Rate"
   ) +
   theme_minimal()
+
+Home Win Probability by Opponent Travel Distance:
+ggplot(homecourt, aes(x = Distance_Traveled, y = Home_Win)) +
+    geom_smooth(method = "glm", method.args = list(family = "binomial"),
+                color = "red", se = TRUE) +
+    labs(title = "Home Win Probability by Opponent Travel Distance",
+         x = "Distance Traveled (Miles)",
+         y = "Home Win") +
+    theme_minimal()
