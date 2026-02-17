@@ -267,24 +267,6 @@ homecourt |>
     fill = "Away B2B (1 = Yes)"
   )
 
-Attendance x Distance Traveled
-homecourt
-  group_by(attendance_bin, distance_bin) |>
-  summarise(
-    home_win_rate = mean(home_wins),
-    .groups = "drop"
-  ) |>
-  ggplot(aes(x = attendance_bin, y = home_win_rate, fill = distance_bin)) +
-  geom_col(position = "dodge") +
-  ylim(0, 1) +
-  labs(
-    title = "Home Win Rate by Attendance and Travel Distance",
-    x = "Attendance Level",
-    y = "Home Win Rate",
-    fill = "Distance Traveled"
-  )
-
-
 
 df %>%
   group_by(distance_bin, tz_diff_abs) %>%
