@@ -303,3 +303,20 @@ ggplot(homecourt_clean,
          y = "Predicted Probability of Home Win",
          color = "Attendance") +
     theme_minimal()
+
+
+homecourt |>
+    drop_na(Distance_Traveled, TimeZoneDiffHours, Home_Win) |>
+    mutate(Distance_Group = ntile(Distance_Traveled, 4)) |>
+    group_by(Distance_Group, TimeZoneDiffHours) |>
+    summarise(Home_Win_Rate = mean(Home_Win), .groups = "drop") |>
+    ggplot(aes(x = factor(TimeZoneDiffHours),
+               y = factor(Distance_Group),
+               fill = Home_Win_Rate)) +
+    geom_tile() +
+    scale_fill_gradient(low = "blue", high = "red") +
+    labs(title = "Home Win Rate by Travel & Time Zone",
+         x = "Time Zones Crossed",
+         y = "Distance Quartile",
+         fill = "Win Rate") +
+    theme_minimal()
