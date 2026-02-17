@@ -247,6 +247,11 @@ homecourt |>
 Time Zone Difference x Back-to-back games
 
 homecourt |>
+ filter(
+    !is.na(TimeZoneDiffHours),
+    !is.na(Away_B2B),
+    !is.na(Home_Win)
+  ) |>
   group_by(abs(TimeZoneDiffHours), Away_B2B) |>
   summarise(
     home_win_rate = mean(Home_Win),
