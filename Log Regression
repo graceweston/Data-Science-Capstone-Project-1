@@ -1,0 +1,13 @@
+# Fit logistic regression model
+model <- glm(Home_Win ~ Home_B2B + Attendance + DistanceTraveled, 
+             data = games, 
+             family = binomial(link = "logit"))
+
+# View summary for coefficients and p-values
+summary(model)
+
+library(broom)
+
+# Get odds ratios and confidence intervals
+exp(cbind(Odds_Ratio = coef(model), confint(model)))
+
