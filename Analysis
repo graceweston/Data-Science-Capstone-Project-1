@@ -267,21 +267,19 @@ homecourt |>
     fill = "Away B2B (1 = Yes)"
   )
 
-homecourt |>
-  group_by(Distance_Traveled, TimeZoneDiffHours) |>
-  summarise(
-    home_win_rate = mean(Home_Win),
-    .groups = "drop"
-) |>
-  ggplot(aes(x = factor(TimeZoneDiffHours), y = Distance_Traveled, fill = home_win_rate)) +
-  geom_tile() +
-  scale_fill_gradient(low = "white", high = "darkred") +
-  labs(
-    title = "Heatmap of Home Win Rate by Distance and Time Zone Difference",
-    x = "Time Zones Crossed",
-    y = "Distance Traveled",
-    fill = "Home Win Rate"
-  )
+ homecourt |>
+    mutate(Distance_Group = ntile(Distance_Traveled, 4)) |>
+    group_by(Distance_Group, TimeZoneDiffHours) |>
+    summarise(Home_Win_Rate = mean(Home_Win), .groups = "drop") |>
+    ggplot(aes(x = factor(TimeZoneDiffHours),
+               y = factor(Distance_Group),
+               fill = Home_Win_Rate)) +
+    geom_tile() +
+    scale_fill_gradient(low = "blue", high = "red") +
+    labs(title = "Home Win Rate by Travel & Time Zone",
+         x = "Time Zones Crossed",
+         y = "Distance Quartile") +
+    theme_minimal()
 
 Home Win Probability by Opponent Travel Distance:
 ggplot(homecourt, aes(x = Distance_Traveled, y = Home_Win)) +
