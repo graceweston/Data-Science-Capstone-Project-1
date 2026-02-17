@@ -228,13 +228,13 @@ homecourt |>
 Comparing Multiple 
 Distance Traveled x Time Zone Difference
 homecourt |>
-  group_by(TimeZoneDiffHours, DistanceTraveled) |>
+  group_by(TimeZoneDiffHours, Distance_Traveled) |>
   summarise(
     home_win_rate = mean(Home_Wins),
     games = n(),
     .groups = "drop"
   ) |>
-  ggplot(aes(x = factor(TimeZoneDiffHours), y = home_win_rate, fill = DistanceTraveled)) +
+  ggplot(aes(x = factor(TimeZoneDiffHours), y = home_win_rate, fill = Distance_Traveled)) +
   geom_col(position = "dodge") +
   ylim(0, 1) +
   labs(
