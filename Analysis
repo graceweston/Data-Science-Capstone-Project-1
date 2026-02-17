@@ -196,8 +196,8 @@ Home Win Rate by Away Team Travel Distance (Make it a histogram and make 10 sepe
 Home Win Rate by Time Zone Difference (make box and whisker plot)
 homecourt |>
   group_by(TimeZoneDiffHours) |>
-  summarise(home_win_rate = mean(home_wins)) |>
-  ggplot(aes(x = factor(TimeZoneDiffHours), y = home_win_rate)) +
+  summarise(Home_Win_Rate = mean(Home_Win)) |>
+  ggplot(aes(x = factor(TimeZoneDiffHours), y = Home_Win_Rate)) +
   geom_col(fill = "orange") +
   ylim(0, 1) +
   labs(
