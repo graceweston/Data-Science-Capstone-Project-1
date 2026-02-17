@@ -289,3 +289,17 @@ ggplot(homecourt, aes(x = Distance_Traveled, y = Home_Win)) +
          x = "Distance Traveled (Miles)",
          y = "Home Win") +
     theme_minimal()
+
+ Home Win Probability by Distance and Attendance:
+ggplot(homecourt_clean, 
+         aes(x = Distance_Traveled, 
+             y = Predicted, 
+             color = Attendance)) +
+    geom_point(alpha = 0.5) +
+    geom_smooth(se = FALSE, color = "black") +
+    scale_color_gradient(low = "blue", high = "orange") +
+    labs(title = "Home Win Probability by Distance and Attendance",
+         x = "Distance Traveled",
+         y = "Predicted Probability of Home Win",
+         color = "Attendance") +
+    theme_minimal()
