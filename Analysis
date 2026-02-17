@@ -230,7 +230,7 @@ Distance Traveled x Time Zone Difference
 homecourt |>
   group_by(TimeZoneDiffHours, Distance_Traveled) |>
   summarise(
-    home_win_rate = mean(Home_Wins),
+    home_win_rate = mean(Home_Win),
     games = n(),
     .groups = "drop"
   ) |>
