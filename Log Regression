@@ -33,3 +33,37 @@ OR > 1 → increases odds of home win
 OR < 1 → decreases odds
 If CI includes 1 → not statistically significant
 
+
+
+
+PREDICTIVE MODEL
+
+games <- read.csv("homecourt.csv")
+
+#load data
+games$HomeWin <- ifelse(games$Winner == games$HomeTeam, 1, 0)
+games$Away_B2B_bin <- ifelse(games$Away_B2B == "Yes", 1, 0)
+
+#split to training and testing data
+set.seed(123)  # reproducibility
+train_index <- sample(seq_len(nrow(games)), size = 0.7 * nrow(games))
+train <- games[train_index, ]
+test  <- games[-train_index, ]
+
+#train the predictive model
+model <- glm(HomeWin ~ Away_B2B_bin + Attendance + Distance_Traveled,
+             data = train,
+             family = binomial)
+summary(model)
+
+#generate predictions
+# Predict probability of home win
+test$Predicted_Prob <- predict(model, test, type = "response")
+head(test$Predicted_Prob)
+
+#convert to W/L predictions
+test$Predicted_Win <- ifelse(test$Predicted_Prob >= 0.5, 1, 0)
+
+#confusion matrix
+table(Predicted = test$Predicted_Win,
+      Actual = test$HomeWin)
