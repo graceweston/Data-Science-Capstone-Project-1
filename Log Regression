@@ -67,3 +67,9 @@ test$Predicted_Win <- ifelse(test$Predicted_Prob >= 0.5, 1, 0)
 #confusion matrix
 table(Predicted = test$Predicted_Win,
       Actual = test$HomeWin)
+
+#ROC curve and AOC
+library(pROC)
+roc_curve <- roc(test$HomeWin, test$Predicted_Prob)
+plot(roc_curve)
+auc(roc_curve)
