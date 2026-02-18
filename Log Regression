@@ -60,4 +60,7 @@ mean(homecourt$Predicted_Win == homecourt$Home_Win)
 table(Predicted = homecourt$Predicted_Win,
       Actual = homecourt$Home_Win)
 
+predictions <- predict(model, type = "response")
+length(predictions)
+nrow(homecourt)
 
