@@ -28,3 +28,8 @@ Home_B2BYes        0.8569361 0.7775984 0.9447416
 Attendance         1.0000072 1.0000032 1.0000112
 Distance_Traveled  0.9999779 0.9999496 1.0000062
 
+Interpretation:
+OR > 1 → increases odds of home win
+OR < 1 → decreases odds
+If CI includes 1 → not statistically significant
+
