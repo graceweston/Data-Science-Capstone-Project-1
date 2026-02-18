@@ -1,10 +1,20 @@
 # Fit logistic regression model
-model <- glm(Home_Win ~ Home_B2B + Attendance + DistanceTraveled, 
-             data = games, 
-             family = binomial(link = "logit"))
+  model <- glm(Home_Win ~ Home_B2B + Attendance + Distance_Traveled, 
+               data = homecourt, 
+               family = binomial(link = "logit"))
+  
+  # View summary for coefficients and p-values
+  summary(model)
 
-# View summary for coefficients and p-values
-summary(model)
+Output:
+Coefficients:
+                    Estimate Std. Error z value Pr(>|z|)    
+(Intercept)        3.425e-01  3.719e-02   9.210  < 2e-16 ***
+Home_B2BYes       -1.544e-01  4.966e-02  -3.109 0.001878 ** 
+Attendance         7.213e-06  2.035e-06   3.544 0.000394 ***
+Distance_Traveled -2.211e-05  1.445e-05  -1.531 0.125871    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 library(broom)
 
