@@ -51,20 +51,6 @@ Higher attendance slightly increases the likelihood of a home team win.
 p = 0.126 ❌ (not statistically significant)
 Confidence interval includes 1
 Distance traveled does not have a meaningful effect on home team win probability in this model.
-________________________________________________________________________
-#PREDICTIVE MODEL
-homecourt_clean <- na.omit(homecourt)
-model <- glm(Home_Win ~ Home_B2B + Attendance + Distance_Traveled, 
-             data = homecourt_clean, 
-             family = binomial)
-homecourt_clean$Predicted_Prob <- predict(model, type = "response")
-
-#glm model from above plus
-homecourt$Predicted_Prob <- predict(model, type = "response")
-homecourt$Predicted_Win <- ifelse(homecourt$Predicted_Prob >= 0.5, 1, 0)
-mean(homecourt$Predicted_Win == homecourt$Home_Win)
-table(Predicted = homecourt$Predicted_Win,
-      Actual = homecourt$Home_Win)
 
 predictions <- predict(model, type = "response")
 length(predictions)
